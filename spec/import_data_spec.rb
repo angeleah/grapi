@@ -3,7 +3,7 @@ require "script/import_data"
 
 describe 'DataImporter' do
 
-  let(:data_importer) { DataImporter.new(File.join("script", "import_files")) }
+  let(:data_importer) { DataImporter.new(File.join( "spec", "fixtures", "test_import_files")) }
   let(:csv_file) { "script/import_files/test.csv" }
   let(:psv_file) { "script/import_files/test.psv" }
   let(:ssv_file) { "script/import_files/test.ssv" }
