@@ -23,38 +23,36 @@ describe 'DataImporter' do
     User.all.count.should == 5
   end
 
-  context "CSV" do
-    it "gets the file separator" do
-      data_importer.get_separator(csv_file).should == ","
+  context ".file_separator" do
+    it "works for CSV" do
+      expect(data_importer.get_separator(csv_file)).to eq(",")
     end
 
-    it "processes the file" do
+    it "works for PSV" do
+      expect(data_importer.get_separator(psv_file)).to eq("|")
+    end
+
+    it "works for SSV" do
+      expect(data_importer.get_separator(ssv_file)).to eq(" ")
+    end
+  end
+
+  context ".process_file" do
+    it "processes a CSV" do
       expect {
         data_importer.process_file(csv_file)
         }.to change(User, :count).by(5)
     end
-  end
 
-  context "PSV" do
-    it "gets the file separator" do
-      data_importer.get_separator(psv_file).should == "|"
-    end
-
-    it "processes the file" do
-      expect {
-        data_importer.process_file(psv_file)
-        }.to change(User, :count).by(5)
-    end
-  end
-
-  context "SSV" do
-    it "gets the file separator" do
-      data_importer.get_separator(ssv_file).should == " "
-    end
-
-    it "processes the file" do
+    it "processes a SSV" do
       expect {
         data_importer.process_file(ssv_file)
+        }.to change(User, :count).by(5)
+    end
+
+    it "processes a PSV" do
+      expect {
+        data_importer.process_file(psv_file)
         }.to change(User, :count).by(5)
     end
   end
