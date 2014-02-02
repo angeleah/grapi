@@ -12,10 +12,15 @@ describe 'DataImporter' do
     User.destroy_all
   end
 
-  #TODO: add new feature that accounts for duplicate entries
-
   it "reads a directory" do
     data_importer.read_directory.should match_array(["test.csv", "test.psv", "test.ssv"])
+  end
+
+  it "does not add duplicate records" do
+    data_importer.process_file(csv_file)
+    data_importer.process_file(psv_file)
+    data_importer.process_file(ssv_file)
+    User.all.count.should == 5
   end
 
   context "CSV" do

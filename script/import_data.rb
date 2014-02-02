@@ -15,12 +15,12 @@ class DataImporter
   def process_file(file)
     separator = get_separator(file)
     CSV.foreach( file, {:col_sep => separator} ) do |row|
-      User.create!(
-        lastname: row[0],
-        firstname: row[1],
-        gender: row[2],
-        favorite_color: row[3],
-        birthdate: row[4]
+      User.find_or_create_by!(
+        lastname: row[0].strip,
+        firstname: row[1].strip,
+        gender: row[2].strip,
+        favorite_color: row[3].strip,
+        birthdate: row[4].strip
       )
     end
   end
