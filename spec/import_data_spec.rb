@@ -8,6 +8,12 @@ describe 'DataImporter' do
   let(:psv_file) { "script/import_files/test.psv" }
   let(:ssv_file) { "script/import_files/test.ssv" }
 
+  after do
+    User.destroy_all
+  end
+
+  #TODO: add new feature that accounts for duplicate entries
+
   it "reads a directory" do
     data_importer.read_directory.should match_array(["test.csv", "test.psv", "test.ssv"])
   end
@@ -18,7 +24,9 @@ describe 'DataImporter' do
     end
 
     it "processes the file" do
-      data_importer.process_file(csv_file).should == "cool"
+      expect {
+        data_importer.process_file(csv_file)
+        }.to change(User, :count).by(5)
     end
   end
 
@@ -28,7 +36,9 @@ describe 'DataImporter' do
     end
 
     it "processes the file" do
-      data_importer.process_file(psv_file).should == "cool"
+      expect {
+        data_importer.process_file(psv_file)
+        }.to change(User, :count).by(5)
     end
   end
 
@@ -38,7 +48,9 @@ describe 'DataImporter' do
     end
 
     it "processes the file" do
-      data_importer.process_file(ssv_file).should == "cool"
+      expect {
+        data_importer.process_file(ssv_file)
+        }.to change(User, :count).by(5)
     end
   end
 end

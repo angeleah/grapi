@@ -1,4 +1,6 @@
 require "csv"
+require "db/schema"
+require "models/user"
 
 class DataImporter
 
@@ -13,12 +15,13 @@ class DataImporter
   def process_file(file)
     separator = get_separator(file)
     CSV.foreach( file, {:col_sep => separator} ) do |row|
-      puts "lastname = #{ row[0]}"
-      puts "firstname = #{ row[1]}"
-      puts "gender = #{ row[2]}"
-      puts "fav_color = #{ row[3]}"
-      puts "birthdate = #{ row[4]}"
-      return "cool"
+      User.create!(
+        lastname: row[0],
+        firstname: row[1],
+        gender: row[2],
+        favorite_color: row[3],
+        birthdate: row[4]
+      )
     end
   end
 
