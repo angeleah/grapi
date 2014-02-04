@@ -9,7 +9,10 @@ Usage:
   + cd into the directory.
   + using ruby 2.1.0( if using rbenv and you don't have this ruby, after installing, $ gem install bundler)
   + $ bundle.
-  + Run the specs. $rspec (This will also seed the database.)
+  +
+
+- Run the specs...
+  + $rspec
   + start the server with either shotgun or ruby.
     - To use shotgun,
       + $ shotgun rtc_app.rb

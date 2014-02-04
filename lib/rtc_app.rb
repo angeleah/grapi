@@ -1,7 +1,9 @@
+$: << File.expand_path("../lib", File.dirname(__FILE__))
+
 require 'sinatra'
 require 'haml'
-require './db/schema'
-require './models/user'
+require 'db/schema'
+require 'models/user'
 
 get '/' do
   @users = User.all

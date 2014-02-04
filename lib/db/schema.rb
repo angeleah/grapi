@@ -1,4 +1,4 @@
-require './db/database_configuration'
+require 'db/database_configuration'
 
 ActiveRecord::Schema.define do
   unless ActiveRecord::Base.connection.tables.include? 'users'
