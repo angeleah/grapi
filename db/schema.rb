@@ -1,4 +1,4 @@
-require 'db/database_configuration'
+require './db/database_configuration'
 
 ActiveRecord::Schema.define do
   unless ActiveRecord::Base.connection.tables.include? 'users'
@@ -7,7 +7,7 @@ ActiveRecord::Schema.define do
     table.column :firstname, :string
     table.column :gender, :string
     table.column :favorite_color, :string
-    table.column :birthdate, :string
+    table.column :birthdate, :date
    end
   end
 end
