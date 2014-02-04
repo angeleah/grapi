@@ -21,10 +21,10 @@ Usage:
     - $ bin/process spec/fixtures/test_import_files/test.ssv
   + start the server with either shotgun or ruby.
     - To use shotgun,
-      + $ shotgun rtc_app.rb
+      + $ shotgun lib/rtc_app.rb
       + navigate to localhost:9393
     -  to run with ruby
-      + $ ruby rtc_app.rb
+      + $ ruby lib/rtc_app.rb
       + navigate to localhost:4567
 
 - To run the specs:
