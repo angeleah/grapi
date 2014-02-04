@@ -1,6 +1,6 @@
-require "csv"
-require "db/schema"
-require "models/user"
+require 'csv'
+require 'db/schema'
+require 'models/user'
 
 class DataImporter
 

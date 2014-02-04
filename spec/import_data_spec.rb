@@ -1,14 +1,14 @@
-require "spec_helper"
-require "script/import_data"
+require 'spec_helper'
+require 'script/import_data'
 
-describe 'DataImporter' do
+describe "DataImporter" do
 
   let(:data_importer) { DataImporter.new(File.join( "spec", "fixtures", "test_import_files")) }
   let(:csv_file) { File.join( "spec", "fixtures", "test_import_files", "test.csv") }
   let(:psv_file) { File.join( "spec", "fixtures", "test_import_files", "test.psv") }
   let(:ssv_file) { File.join( "spec", "fixtures", "test_import_files", "test.ssv") }
 
-  after do
+  before do
     User.destroy_all
   end
 

@@ -1,0 +1,14 @@
+%table
+  %tr
+    %th Lastname
+    %th Firstname
+    %th Gender
+    %th Favorite Color
+    %th Date of Birth
+  - @users.each do |user|
+    %tr
+      %td #{user.lastname}
+      %td #{user.firstname}
+      %td #{user.gender}
+      %td #{user.favorite_color}
+      %td #{(user.birthdate).strftime("%m/%d/%Y")}
