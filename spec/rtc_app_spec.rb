@@ -19,4 +19,27 @@ describe "rtc_app" do
       expect(last_response.body).to include(user.firstname)
     end
   end
+
+  context "sorting" do
+    it "by gender displaying females before males, then lastname ascending" do
+      sorted_gender_markup = File.read(File.join( "spec", "fixtures", "sorted_by_gender.html"))
+      get '/gender'
+      expect(last_response).to be_ok
+      expect(last_response.body).to match(sorted_gender_markup)
+    end
+
+    it "by birthdate, ascending" do
+      sorted_birthdate_markup = File.read(File.join( "spec", "fixtures", "sorted_by_birthdate.html"))
+      get '/birthdate'
+      expect(last_response).to be_ok
+      expect(last_response.body).to match(sorted_birthdate_markup)
+    end
+
+    it "by lastname, descending" do
+      sorted_lastname_markup = File.read(File.join( "spec", "fixtures", "sorted_by_lastname.html"))
+      get '/lastname'
+      expect(last_response).to be_ok
+      expect(last_response.body).to match(sorted_lastname_markup)
+    end
+  end
 end
