@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'data_importer'
 
-describe "DataImporter" do
+describe DataImporter do
 
   let(:csv_file) { File.join( "spec", "fixtures", "test_import_files", "test.csv") }
   let(:psv_file) { File.join( "spec", "fixtures", "test_import_files", "test.psv") }
