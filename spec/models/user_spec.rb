@@ -65,7 +65,7 @@ describe User do
     end
 
     context ".by_order" do
-      it "returns a formatted version of .by_gender when the gender argument is passed" do
+      it "returns records of .by_gender when the gender argument is passed" do
         expect(User.by_order("lastname")[0].firstname).to eq("Alan")
         expect(User.by_order("lastname")[1].firstname).to eq("Ada")
         expect(User.by_order("lastname")[2].firstname).to eq("Albert")
@@ -73,7 +73,7 @@ describe User do
         expect(User.by_order("lastname")[4].firstname).to eq("Marie")
       end
 
-      it "returns a formatted version of .by_birthdate_asc when the birthdate argument is passed" do
+      it "returns records of .by_birthdate_asc when the birthdate argument is passed" do
         expect(User.by_order("birthdate")[0].firstname).to eq("Charles")
         expect(User.by_order("birthdate")[1].firstname).to eq("Ada")
         expect(User.by_order("birthdate")[2].firstname).to eq("Marie")
@@ -81,7 +81,7 @@ describe User do
         expect(User.by_order("birthdate")[4].firstname).to eq("Alan")
       end
 
-      it "returns a formatted version of .by_birthdate_asc when the birthdate argument is passed" do
+      it "returns records of .by_birthdate_asc when the birthdate argument is passed" do
         expect(User.by_order("lastname")[0].firstname).to eq("Alan")
         expect(User.by_order("lastname")[1].firstname).to eq("Ada")
         expect(User.by_order("lastname")[2].firstname).to eq("Albert")
@@ -89,7 +89,7 @@ describe User do
         expect(User.by_order("lastname")[4].firstname).to eq("Marie")
       end
 
-      it "returns a formatted version of User.all when the no argument is passed" do
+      it "returns records of User.all when the no argument is passed" do
         expect(User.by_order(nil).count).to eq(5)
       end
     end
