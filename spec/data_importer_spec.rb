@@ -7,7 +7,7 @@ describe DataImporter do
   let(:psv_file) { File.join( "spec", "fixtures", "test_import_files", "test.psv") }
   let(:ssv_file) { File.join( "spec", "fixtures", "test_import_files", "test.ssv") }
 
-  before do
+  after do
     User.destroy_all
   end
 

@@ -6,9 +6,12 @@ describe User do
 
   context "formatting records" do
     before do
-      User.destroy_all
       User.create!(lastname: "Einstein", firstname: "Albert", gender: "Male", favorite_color: "Green", birthdate: "1879-03-14")
       User.create!(lastname: "Lovelace", firstname: "Ada", gender: "Female", favorite_color: "Purple", birthdate: "1815-12-10")
+    end
+
+    after do
+      User.destroy_all
     end
 
     context ".to_s" do

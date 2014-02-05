@@ -5,7 +5,7 @@ describe Application do
 
   let(:csv_file) { File.join( "spec", "fixtures", "test_import_files", "test.csv") }
 
-  before do
+  after do
     User.destroy_all
   end
 

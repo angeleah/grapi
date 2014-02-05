@@ -11,10 +11,13 @@ describe DataDisplayer do
   let(:ssv_file) { File.join( "spec", "fixtures", "test_import_files", "test.ssv") }
 
   before do
-    User.destroy_all
     DataImporter.new(csv_file).import_file
     DataImporter.new(psv_file).import_file
     DataImporter.new(ssv_file).import_file
+  end
+
+  after do
+    User.destroy_all
   end
 
   context ".display_data" do
