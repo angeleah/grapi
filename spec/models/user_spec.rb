@@ -17,8 +17,7 @@ describe User do
     end
   end
 
-  context ".sort" do
-
+  context "sorting" do
     let(:csv_file) { File.join( "spec", "fixtures", "test_import_files", "test.csv") }
     let(:psv_file) { File.join( "spec", "fixtures", "test_import_files", "test.psv") }
     let(:ssv_file) { File.join( "spec", "fixtures", "test_import_files", "test.ssv") }
@@ -30,28 +29,48 @@ describe User do
       DataImporter.new(ssv_file).import_file
     end
 
-    it "by gender displaying females before males, then lastname ascending" do
-      expect((User.by_gender)[0].firstname).to eq("Marie")
-      expect((User.by_gender)[1].firstname).to eq("Ada")
-      expect((User.by_gender)[2].firstname).to eq("Charles")
-      expect((User.by_gender)[3].firstname).to eq("Albert")
-      expect((User.by_gender)[4].firstname).to eq("Alan")
+    context ".sort" do
+      it "by gender displaying females before males, then lastname ascending" do
+        expect(User.by_gender[0].firstname).to eq("Marie")
+        expect(User.by_gender[1].firstname).to eq("Ada")
+        expect(User.by_gender[2].firstname).to eq("Charles")
+        expect(User.by_gender[3].firstname).to eq("Albert")
+        expect(User.by_gender[4].firstname).to eq("Alan")
+      end
+
+      it "by birthdate, ascending" do
+        expect(User.by_birthdate_asc[0].firstname).to eq("Charles")
+        expect(User.by_birthdate_asc[1].firstname).to eq("Ada")
+        expect(User.by_birthdate_asc[2].firstname).to eq("Marie")
+        expect(User.by_birthdate_asc[3].firstname).to eq("Albert")
+        expect(User.by_birthdate_asc[4].firstname).to eq("Alan")
+      end
+
+      it "by lastname, descending" do
+        expect(User.by_lastname_desc[0].firstname).to eq("Alan")
+        expect(User.by_lastname_desc[1].firstname).to eq("Ada")
+        expect(User.by_lastname_desc[2].firstname).to eq("Albert")
+        expect(User.by_lastname_desc[3].firstname).to eq("Charles")
+        expect(User.by_lastname_desc[4].firstname).to eq("Marie")
+      end
     end
 
-    it "by birthdate, ascending" do
-      expect((User.by_birthdate_asc)[0].firstname).to eq("Charles")
-      expect((User.by_birthdate_asc)[1].firstname).to eq("Ada")
-      expect((User.by_birthdate_asc)[2].firstname).to eq("Marie")
-      expect((User.by_birthdate_asc)[3].firstname).to eq("Albert")
-      expect((User.by_birthdate_asc)[4].firstname).to eq("Alan")
-    end
+    context ".by_order" do
+      it "calls .by_gender when the gender argument is passed" do
+        expect(User.by_order("gender")[0].firstname).to eq("Marie")
+        expect(User.by_order("gender")[1].firstname).to eq("Ada")
+        expect(User.by_order("gender")[2].firstname).to eq("Charles")
+        expect(User.by_order("gender")[3].firstname).to eq("Albert")
+        expect(User.by_order("gender")[4].firstname).to eq("Alan")
+      end
 
-    it "by lastname, descending" do
-      expect((User.by_lastname_desc)[0].firstname).to eq("Alan")
-      expect((User.by_lastname_desc)[1].firstname).to eq("Ada")
-      expect((User.by_lastname_desc)[2].firstname).to eq("Albert")
-      expect((User.by_lastname_desc)[3].firstname).to eq("Charles")
-      expect((User.by_lastname_desc)[4].firstname).to eq("Marie")
+      it "calls .by_lastname_asc when the lastname argument is passed" do
+        expect(User.by_order("lastname")[0].firstname).to eq("Alan")
+        expect(User.by_order("lastname")[1].firstname).to eq("Ada")
+        expect(User.by_order("lastname")[2].firstname).to eq("Albert")
+        expect(User.by_order("lastname")[3].firstname).to eq("Charles")
+        expect(User.by_order("lastname")[4].firstname).to eq("Marie")
+      end
     end
   end
 end
