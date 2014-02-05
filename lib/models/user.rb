@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
         all
       end
   end
+
+  def self.create_record_strings(records)
+    records.map(&:to_s).join("\n")
+  end
 end

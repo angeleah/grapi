@@ -4,16 +4,25 @@ require 'data_importer'
 
 describe User do
 
-  context ".to_s" do
+  context "formatting records" do
     before do
       User.destroy_all
       User.create!(lastname: "Einstein", firstname: "Albert", gender: "Male", favorite_color: "Green", birthdate: "1879-03-14")
       User.create!(lastname: "Lovelace", firstname: "Ada", gender: "Female", favorite_color: "Purple", birthdate: "1815-12-10")
     end
 
-    it "returns the attributes as a string" do
-      expect(User.first.to_s).to eq("Einstein, Albert, Male, 03/14/1879, Green")
-      expect(User.last.to_s).to eq("Lovelace, Ada, Female, 12/10/1815, Purple")
+    context ".to_s" do
+      it "returns single attributes as a string" do
+        expect(User.first.to_s).to eq("Einstein, Albert, Male, 03/14/1879, Green")
+        expect(User.last.to_s).to eq("Lovelace, Ada, Female, 12/10/1815, Purple")
+      end
+    end
+
+    context ".create_record_strings" do
+      it "returns an array of attributes as an array of strings" do
+        users = User.all
+        expect(User.create_record_strings(users)).to eq("Einstein, Albert, Male, 03/14/1879, Green\nLovelace, Ada, Female, 12/10/1815, Purple")
+      end
     end
   end
 
@@ -56,20 +65,32 @@ describe User do
     end
 
     context ".by_order" do
-      it "calls .by_gender when the gender argument is passed" do
-        expect(User.by_order("gender")[0].firstname).to eq("Marie")
-        expect(User.by_order("gender")[1].firstname).to eq("Ada")
-        expect(User.by_order("gender")[2].firstname).to eq("Charles")
-        expect(User.by_order("gender")[3].firstname).to eq("Albert")
-        expect(User.by_order("gender")[4].firstname).to eq("Alan")
-      end
-
-      it "calls .by_lastname_asc when the lastname argument is passed" do
+      it "returns a formatted version of .by_gender when the gender argument is passed" do
         expect(User.by_order("lastname")[0].firstname).to eq("Alan")
         expect(User.by_order("lastname")[1].firstname).to eq("Ada")
         expect(User.by_order("lastname")[2].firstname).to eq("Albert")
         expect(User.by_order("lastname")[3].firstname).to eq("Charles")
         expect(User.by_order("lastname")[4].firstname).to eq("Marie")
+      end
+
+      it "returns a formatted version of .by_birthdate_asc when the birthdate argument is passed" do
+        expect(User.by_order("birthdate")[0].firstname).to eq("Charles")
+        expect(User.by_order("birthdate")[1].firstname).to eq("Ada")
+        expect(User.by_order("birthdate")[2].firstname).to eq("Marie")
+        expect(User.by_order("birthdate")[3].firstname).to eq("Albert")
+        expect(User.by_order("birthdate")[4].firstname).to eq("Alan")
+      end
+
+      it "returns a formatted version of .by_birthdate_asc when the birthdate argument is passed" do
+        expect(User.by_order("lastname")[0].firstname).to eq("Alan")
+        expect(User.by_order("lastname")[1].firstname).to eq("Ada")
+        expect(User.by_order("lastname")[2].firstname).to eq("Albert")
+        expect(User.by_order("lastname")[3].firstname).to eq("Charles")
+        expect(User.by_order("lastname")[4].firstname).to eq("Marie")
+      end
+
+      it "returns a formatted version of User.all when the no argument is passed" do
+        expect(User.by_order(nil).count).to eq(5)
       end
     end
   end
