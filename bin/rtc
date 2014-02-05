@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
-require 'pry'
 $: << File.expand_path("../lib", File.dirname(__FILE__))
-require 'data_importer'
+require 'application'
 
-DataImporter.new(ARGV[0]).import_file
+Application.new(ARGV)
