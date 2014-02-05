@@ -1,5 +1,5 @@
-Curie, Marie, Female, 11/07/1867, Yellow
-Lovelace, Ada, Female, 12/10/1815, Purple
 Darwin, Charles, Male, 02/12/1809, Blue
+Lovelace, Ada, Female, 12/10/1815, Purple
+Curie, Marie, Female, 11/07/1867, Yellow
 Einstein, Albert, Male, 03/14/1879, Green
 Turing, Alan, Male, 06/03/1912, Green
