@@ -3,4 +3,4 @@ require 'pry'
 $: << File.expand_path("../lib", File.dirname(__FILE__))
 require 'data_importer'
 
-DataImporter.new(ARGV[0]).process_file
+DataImporter.new(ARGV[0]).import_file

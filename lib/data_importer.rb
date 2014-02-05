@@ -8,7 +8,7 @@ class DataImporter
     @file = File.expand_path(file)
   end
 
-  def process_file
+  def import_file
     separator = get_separator
 
     CSV.foreach(@file, {:col_sep => separator} ) do |row|

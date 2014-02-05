@@ -12,9 +12,9 @@ describe "DataImporter" do
   end
 
   it "does not add duplicate records" do
-    DataImporter.new(csv_file).process_file
-    DataImporter.new(psv_file).process_file
-    DataImporter.new(ssv_file).process_file
+    DataImporter.new(csv_file).import_file
+    DataImporter.new(psv_file).import_file
+    DataImporter.new(ssv_file).import_file
     User.all.count.should == 5
   end
 
@@ -32,22 +32,22 @@ describe "DataImporter" do
     end
   end
 
-  context ".process_file" do
+  context ".import_file" do
     it "processes a CSV" do
       expect {
-        DataImporter.new(csv_file).process_file
+        DataImporter.new(csv_file).import_file
         }.to change(User, :count).by(5)
     end
 
     it "processes a SSV" do
       expect {
-        DataImporter.new(ssv_file).process_file
+        DataImporter.new(ssv_file).import_file
         }.to change(User, :count).by(5)
     end
 
     it "processes a PSV" do
       expect {
-        DataImporter.new(psv_file).process_file
+        DataImporter.new(psv_file).import_file
         }.to change(User, :count).by(5)
     end
   end
