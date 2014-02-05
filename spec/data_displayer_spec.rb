@@ -1,5 +1,8 @@
 require 'spec_helper'
 require 'data_displayer'
+require 'data_importer'
+require 'db/schema'
+require 'models/user'
 
 describe DataDisplayer do
 

@@ -1,6 +1,4 @@
-require 'db/schema'
-require 'models/user'
-
+require 'pry'
 class DataDisplayer
 
   def self.output(user_data)
