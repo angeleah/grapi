@@ -12,16 +12,9 @@ describe User do
     end
 
     context ".to_s" do
-      it "returns single attributes as a string" do
+      it "returns a single record as a formatted string" do
         expect(User.first.to_s).to eq("Einstein, Albert, Male, 03/14/1879, Green")
         expect(User.last.to_s).to eq("Lovelace, Ada, Female, 12/10/1815, Purple")
-      end
-    end
-
-    context ".create_record_strings" do
-      it "returns an array of attributes as an array of strings" do
-        users = User.all
-        expect(User.create_record_strings(users)).to eq("Einstein, Albert, Male, 03/14/1879, Green\nLovelace, Ada, Female, 12/10/1815, Purple")
       end
     end
   end
