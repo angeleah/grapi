@@ -25,7 +25,7 @@ class Application
   end
 
   def import_file
-    DataImporter.new(@file).import_file
+    FileImporter.new(@file)
   end
 
   def sort_records

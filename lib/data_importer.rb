@@ -1,35 +1,12 @@
-require 'csv'
-require 'db/schema'
-require 'models/user'
+require 'file_importer'
+require 'string_importer'
 
 class DataImporter
-
-  def initialize(file)
-    @file = File.expand_path(file)
-  end
-
-  def import_file
-    separator = get_separator
-
-    CSV.foreach(@file, {:col_sep => separator} ) do |row|
-      User.find_or_create_by!(
-        lastname: row[0].strip,
-        firstname: row[1].strip,
-        gender: row[2].strip,
-        favorite_color: row[3].strip,
-        birthdate: row[4].strip
-      )
-    end
-  end
-
-  def get_separator
-    case File.extname(@file)
-    when ".csv"
-      ","
-    when ".psv"
-      "|"
-    when ".ssv"
-      " "
+  def initialize(data)
+    if File.file?(File.expand_path(data))
+      FileImporter.new(data)
+    else
+      StringImporter.new(data)
     end
   end
 end

@@ -11,9 +11,9 @@ describe DataDisplayer do
   let(:ssv_file) { File.join( "spec", "fixtures", "test_import_files", "test.ssv") }
 
   before do
-    DataImporter.new(csv_file).import_file
-    DataImporter.new(psv_file).import_file
-    DataImporter.new(ssv_file).import_file
+    FileImporter.new(csv_file)
+    FileImporter.new(psv_file)
+    FileImporter.new(ssv_file)
   end
 
   after do

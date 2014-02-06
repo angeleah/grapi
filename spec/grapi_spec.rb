@@ -30,5 +30,27 @@ describe Api do
       expect(last_response.status).to eq(200)
       expect(JSON.parse(last_response.body)).to eq(users_by_gender.map(&:format).as_json)
     end
+
+    it "GET/records/birthdate returns records sorted by birthdate" do
+      users_by_birthdate = User.by_birthdate_asc
+      get "/records/birthdate"
+      expect(last_response.status).to eq(200)
+      expect(JSON.parse(last_response.body)).to eq(users_by_birthdate.map(&:format).as_json)
+    end
+
+    it "GET/records/name returns records sorted by name" do
+      users_by_name = User.by_lastname_desc
+      get "/records/name"
+      expect(last_response.status).to eq(200)
+      expect(JSON.parse(last_response.body)).to eq(users_by_name.map(&:format).as_json)
+    end
+
+    context "POST" do
+      it "POST/records allows a single data line in CSV format" do |variable|
+        post "/records", { record: "Person, Some, Female, Red, 1901-02-17" }
+        expect(last_response.status).to eq(201)
+        expect(User.all.last.format).to eq(lastname: "Person" , firstname: "Some", gender: "Female", favorite_color: "Red", birthdate: "02/17/1901")
+      end
+    end
   end
 end

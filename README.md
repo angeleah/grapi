@@ -10,6 +10,10 @@ Usage:
   + using ruby 2.1.0( if using rbenv and you don't have this ruby, after installing, $ gem install bundler)
   + $ bundle.
 
+- To run the specs:
+  + Follow the steps to Getting Started.
+  + $ rspec
+
 - Step 1: Import data.
   + Follow the steps to Getting Started.
   + To seed the app with data, you can feed it .csv, .psv, or .ssv files.
@@ -29,10 +33,6 @@ Usage:
         - lastname (which will sort by last name, descending.)
           + example: $ bin/rtc spec/fixtures/test_import_files/test.ssv lastname
 
-  + To run the specs:
-    - Follow the steps to Getting Started.
-    - $ rspec
-
 - Step 2: Run the Grape Api.
   + Follow the steps to Getting Started.
   + Follow the steps to Import data.
@@ -44,4 +44,3 @@ Usage:
       + GET localhost:9393/records/gender - returns records sorted by gender
       + GET localhost:9393/records/birthdate - returns records sorted by birthdate
       + GET localhost:9393/records/name - returns records sorted by name
-
