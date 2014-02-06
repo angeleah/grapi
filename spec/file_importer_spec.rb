@@ -19,35 +19,35 @@ describe FileImporter do
   end
 
   context ".file_separator" do
-    it "works for CSV" do
+    it "finds the correct column separator for CSV" do
       expect(FileImporter.new(csv_file).get_separator).to eq(",")
     end
 
-    it "works for PSV" do
+    it "finds the correct column separator for PSV" do
       expect(FileImporter.new(psv_file).get_separator).to eq("|")
     end
 
-    it "works for SSV" do
+    it "finds the correct column separator for SSV" do
       expect(FileImporter.new(ssv_file).get_separator).to eq(" ")
     end
   end
 
   context ".import" do
-    it "processes a CSV" do
+    it "imports the data from a CSV file" do
       expect {
         FileImporter.new(csv_file)
         }.to change(User, :count).by(5)
     end
 
-    it "processes a SSV" do
+    it "imports the data from a PSV file" do
       expect {
-        FileImporter.new(ssv_file)
+        FileImporter.new(psv_file)
         }.to change(User, :count).by(5)
     end
 
-    it "processes a PSV" do
+    it "imports the data from a SSV file" do
       expect {
-        FileImporter.new(psv_file)
+        FileImporter.new(ssv_file)
         }.to change(User, :count).by(5)
     end
   end

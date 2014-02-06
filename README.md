@@ -1,4 +1,4 @@
-rtc - Reverb Developer Challenge
+rtc - Reverb Technical Challenge
 ================================
 This is a [technical challenge](http://reverb.com/page/dev-challenge) given by [Reverb](http://reverb.com/). This app uses the command line to import data and display data.
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'models/user'
 require 'data_importer'
+require 'models/user'
 
 describe User do
 
@@ -35,9 +35,9 @@ describe User do
     let(:ssv_file) { File.join( "spec", "fixtures", "test_import_files", "test.ssv") }
 
     before do
-      FileImporter.new(csv_file)
-      FileImporter.new(psv_file)
-      FileImporter.new(ssv_file)
+      DataImporter.new(csv_file)
+      DataImporter.new(psv_file)
+      DataImporter.new(ssv_file)
     end
 
     after do
@@ -45,7 +45,7 @@ describe User do
     end
 
     context ".sort" do
-      it "by gender displaying females before males, then lastname ascending" do
+      it "by gender displays females before males, then lastname ascending" do
         expect(User.by_gender[0].firstname).to eq("Marie")
         expect(User.by_gender[1].firstname).to eq("Ada")
         expect(User.by_gender[2].firstname).to eq("Charles")
@@ -71,7 +71,7 @@ describe User do
     end
 
     context ".by_order" do
-      it "returns records of .by_gender when the gender argument is passed" do
+      it "returns records .by_gender when the gender argument is passed" do
         expect(User.by_order("lastname")[0].firstname).to eq("Alan")
         expect(User.by_order("lastname")[1].firstname).to eq("Ada")
         expect(User.by_order("lastname")[2].firstname).to eq("Albert")
@@ -79,7 +79,7 @@ describe User do
         expect(User.by_order("lastname")[4].firstname).to eq("Marie")
       end
 
-      it "returns records of .by_birthdate_asc when the birthdate argument is passed" do
+      it "returns records .by_birthdate_asc when the birthdate argument is passed" do
         expect(User.by_order("birthdate")[0].firstname).to eq("Charles")
         expect(User.by_order("birthdate")[1].firstname).to eq("Ada")
         expect(User.by_order("birthdate")[2].firstname).to eq("Marie")
@@ -87,7 +87,7 @@ describe User do
         expect(User.by_order("birthdate")[4].firstname).to eq("Alan")
       end
 
-      it "returns records of .by_birthdate_asc when the birthdate argument is passed" do
+      it "returns records .by_lastname_desc when the lastname argument is passed" do
         expect(User.by_order("lastname")[0].firstname).to eq("Alan")
         expect(User.by_order("lastname")[1].firstname).to eq("Ada")
         expect(User.by_order("lastname")[2].firstname).to eq("Albert")

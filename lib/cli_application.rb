@@ -1,9 +1,9 @@
-require 'data_importer'
 require 'data_displayer'
+require 'data_importer'
 require 'db/schema'
 require 'models/user'
 
-class Application
+class CliApplication
 
   def initialize(args = nil)
     if args.nil?
@@ -17,15 +17,15 @@ class Application
 
   def process_request
     if File.file?(@file)
-      import_file
+      import
       sort_records
     else
       invalid_input
     end
   end
 
-  def import_file
-    FileImporter.new(@file)
+  def import
+    DataImporter.new(@file)
   end
 
   def sort_records

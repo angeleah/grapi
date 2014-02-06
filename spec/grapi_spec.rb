@@ -1,9 +1,10 @@
 require 'spec_helper'
-require 'grapi'
 require 'db/schema'
+require 'grapi'
 require 'models/user'
 
 describe Api do
+
   include Rack::Test::Methods
 
   def app
@@ -24,21 +25,21 @@ describe Api do
       User.destroy_all
     end
 
-    it "GET/records/gender returns records sorted by gender" do
+    it "GET/records/gender returns records sorted by gender, females before males, then lastname ascending" do
       users_by_gender = User.by_gender
       get "/records/gender"
       expect(last_response.status).to eq(200)
       expect(JSON.parse(last_response.body)).to eq(users_by_gender.map(&:format).as_json)
     end
 
-    it "GET/records/birthdate returns records sorted by birthdate" do
+    it "GET/records/birthdate returns records sorted by birthdate, ascending" do
       users_by_birthdate = User.by_birthdate_asc
       get "/records/birthdate"
       expect(last_response.status).to eq(200)
       expect(JSON.parse(last_response.body)).to eq(users_by_birthdate.map(&:format).as_json)
     end
 
-    it "GET/records/name returns records sorted by name" do
+    it "GET/records/name returns records sorted by lastname, descending" do
       users_by_name = User.by_lastname_desc
       get "/records/name"
       expect(last_response.status).to eq(200)
@@ -50,6 +51,18 @@ describe Api do
         post "/records", { record: "Person, Some, Female, Red, 1901-02-17" }
         expect(last_response.status).to eq(201)
         expect(User.all.last.format).to eq(lastname: "Person" , firstname: "Some", gender: "Female", favorite_color: "Red", birthdate: "02/17/1901")
+      end
+
+      it "POST/records allows a single data line in PSV format" do |variable|
+        post "/records", { record: "Person | SomeOther | Female | Blue | 1903-02-17" }
+        expect(last_response.status).to eq(201)
+        expect(User.all.last.format).to eq(lastname: "Person" , firstname: "SomeOther", gender: "Female", favorite_color: "Blue", birthdate: "02/17/1903")
+      end
+
+      it "POST/records allows a single data line in SSV format" do |variable|
+        post "/records", { record: "Persons Soma Female Red 1961-02-17" }
+        expect(last_response.status).to eq(201)
+        expect(User.all.last.format).to eq(lastname: "Persons" , firstname: "Soma", gender: "Female", favorite_color: "Red", birthdate: "02/17/1961")
       end
     end
   end
