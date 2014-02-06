@@ -33,4 +33,6 @@ Usage:
 
 - To run the specs:
   + Follow the steps to Getting Started.
+  + cd into the parse and sort directory.
+    - $ cd parse_and_sort
   + $ rspec
