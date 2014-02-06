@@ -2,8 +2,18 @@ require "active_record"
 
 class User < ActiveRecord::Base
 
+  def format
+    {
+      lastname: lastname,
+      firstname: firstname,
+      gender: gender,
+      birthdate: birthdate.strftime("%m/%d/%Y"),
+      favorite_color: favorite_color
+    }
+  end
+
   def to_s
-    "#{lastname}, #{firstname}, #{gender}, #{birthdate.strftime("%m/%d/%Y")}, #{favorite_color}"
+    format.values.join(", ")
   end
 
   def self.by_gender

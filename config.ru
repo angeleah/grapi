@@ -1,4 +1,4 @@
-$: << File.expand_path("./", File.dirname(__FILE__))
-require "lib/rtc_grapi"
+$: << File.expand_path("./lib", File.dirname(__FILE__))
+require "grapi"
 
 run Api.new

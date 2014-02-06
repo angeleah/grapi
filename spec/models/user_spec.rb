@@ -20,6 +20,13 @@ describe User do
         expect(User.last.to_s).to eq("Lovelace, Ada, Female, 12/10/1815, Purple")
       end
     end
+
+    context ".format" do
+      it "returns a formatted record" do
+        expect(User.first.format).to eq(lastname: "Einstein", firstname: "Albert", gender: "Male", birthdate: "03/14/1879", favorite_color: "Green")
+        expect(User.last.format).to eq(lastname: "Lovelace", firstname: "Ada", gender: "Female", birthdate: "12/10/1815", favorite_color: "Purple")
+      end
+    end
   end
 
   context "sorting" do

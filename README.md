@@ -10,7 +10,7 @@ Usage:
   + using ruby 2.1.0( if using rbenv and you don't have this ruby, after installing, $ gem install bundler)
   + $ bundle.
 
-- To run the parsing_sorting app (step 1):
+- Step 1: Import data.
   + Follow the steps to Getting Started.
   + To seed the app with data, you can feed it .csv, .psv, or .ssv files.
   + The data structure needs to be as follows. (where "," is either a "," "|" or " ")
@@ -29,6 +29,19 @@ Usage:
         - lastname (which will sort by last name, descending.)
           + example: $ bin/rtc spec/fixtures/test_import_files/test.ssv lastname
 
-- To run the specs:
+  + To run the specs:
+    - Follow the steps to Getting Started.
+    - $ rspec
+
+- Step 2: Run the Grape Api.
   + Follow the steps to Getting Started.
-  + $ rspec
+  + Follow the steps to Import data.
+  + Use the shotgun command to start the server.
+    - $ shotgun config.ru
+    - Navigate to localhost:9393
+    - The endpoints are as follows:
+      + POST localhost:9393/records - Post a single data line in any of the 3 formats supported by your existing code
+      + GET localhost:9393/records/gender - returns records sorted by gender
+      + GET localhost:9393/records/birthdate - returns records sorted by birthdate
+      + GET localhost:9393/records/name - returns records sorted by name
+
