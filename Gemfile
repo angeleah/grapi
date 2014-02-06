@@ -7,6 +7,7 @@ gem 'activerecord'
 
 #rtc_grapi_gems
 gem 'rack'
+gem 'rack-test'
 gem 'grape'
 gem 'thin'
 gem 'shotgun'
