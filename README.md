@@ -12,8 +12,6 @@ Usage:
 
 - To run the parsing_sorting app (step 1):
   + Follow the steps to Getting Started.
-  + cd into the parse and sort directory.
-    - $ cd parse_and_sort
   + To seed the app with data, you can feed it .csv, .psv, or .ssv files.
   + The data structure needs to be as follows. (where "," is either a "," "|" or " ")
     - Lastname, Firstname, Gender(male or female), FavoriteColor, DateOfBirth
@@ -33,6 +31,4 @@ Usage:
 
 - To run the specs:
   + Follow the steps to Getting Started.
-  + cd into the parse and sort directory.
-    - $ cd parse_and_sort
   + $ rspec
