@@ -1,8 +1,8 @@
 Grapi - Use [Grape](https://github.com/intridea/grape) to access data that you have imported via the command line.
 ================================
 This app is comprised of 2 parts.
-1. A system to parse and sort a set of records. A command line app that takes as input a file with a set of records in one of three formats(.psv, .csv, .ssv) and outputs (to the screen) the set of records sorted in one of three ways.
-2.A Grape API to access the system.
+- 1. A system to parse and sort a set of records. A command line app that takes as input a file with a set of records in one of three formats(.psv, .csv, .ssv) and outputs (to the screen) the set of records sorted in one of three ways.
+- 2.A Grape API to access the system.
 
 Usage:
 ------
