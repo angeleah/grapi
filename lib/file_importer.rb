@@ -1,6 +1,7 @@
 require 'csv'
 require 'db/schema'
 require 'models/user'
+require 'file_importer'
 
 class FileImporter
 
@@ -11,16 +12,7 @@ class FileImporter
 
   def import
     separator = get_separator
-
-    CSV.foreach(@file, {:col_sep => separator} ) do |row|
-      User.find_or_create_by!(
-        lastname: row[0].strip,
-        firstname: row[1].strip,
-        gender: row[2].strip,
-        favorite_color: row[3].strip,
-        birthdate: row[4].strip
-      )
-    end
+    StringImporter.new(File.read(@file))
   end
 
   def get_separator
